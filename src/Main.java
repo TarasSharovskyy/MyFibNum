@@ -2,28 +2,42 @@ import java.math.BigInteger;
 import java.util.Scanner;
 
 public class Main {
-    public static BigInteger fibonacci2(int n) {
-        if (n == 0 || n == 1) {
-            return BigInteger.ONE;
+
+    public long n;
+    public long i;
+
+
+    public static BigInteger fibonacci2(long n) {
+
+        BigInteger a = BigInteger.valueOf(0);
+        BigInteger b = BigInteger.valueOf(1);
+        BigInteger c = BigInteger.valueOf(1);
+        for (int j=2 ; j<=n ; j++)
+        {
+            c =  a.add(b);
+            a = b;
+            b = c;
         }
-        return fibonacci2(n - 2).add(fibonacci2(n - 1));
+
+        return (a);
+
     }
 
     public static void main(String[] args) {
-
+        Main main = new Main();
         Scanner sc = new Scanner(System.in);
-        int num;
+
         do {
             System.out.println("Please enter a positive number: ");
-            while(!sc.hasNextInt()){
+            while(!sc.hasNextLong()){
                 System.out.println("That`s not a number!");
                 System.out.println("Please enter a positive number: ");
                 sc.next();
             }
-            num = sc.nextInt();
-        } while (num <= 0);
+            main.n = sc.nextLong();
+        } while (main.n <= 0);
 
-        for (int i = 0; i < num; i++) {
+        for (long i = 0; i < main.n; i++) {
             System.out.println(i+" - " +fibonacci2(i));
         }
 
